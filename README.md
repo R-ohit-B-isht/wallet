@@ -42,9 +42,12 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`bitcoinWallet hello PERSON`](#bitcoinwallet-hello-person)
-* [`bitcoinWallet hello world`](#bitcoinwallet-hello-world)
+* [`bitcoinWallet createWallet`](#bitcoinwallet-createwallet)
+* [`bitcoinWallet generateAddress`](#bitcoinwallet-generateaddress)
+* [`bitcoinWallet getBalance`](#bitcoinwallet-getbalance)
 * [`bitcoinWallet help [COMMANDS]`](#bitcoinwallet-help-commands)
+* [`bitcoinWallet importWallet`](#bitcoinwallet-importwallet)
+* [`bitcoinWallet listWallets`](#bitcoinwallet-listwallets)
 * [`bitcoinWallet plugins`](#bitcoinwallet-plugins)
 * [`bitcoinWallet plugins:install PLUGIN...`](#bitcoinwallet-pluginsinstall-plugin)
 * [`bitcoinWallet plugins:inspect PLUGIN...`](#bitcoinwallet-pluginsinspect-plugin)
@@ -54,48 +57,58 @@ USAGE
 * [`bitcoinWallet plugins:uninstall PLUGIN...`](#bitcoinwallet-pluginsuninstall-plugin-1)
 * [`bitcoinWallet plugins:uninstall PLUGIN...`](#bitcoinwallet-pluginsuninstall-plugin-2)
 * [`bitcoinWallet plugins update`](#bitcoinwallet-plugins-update)
+* [`bitcoinWallet transactions`](#bitcoinwallet-transactions)
 
-## `bitcoinWallet hello PERSON`
+## `bitcoinWallet createWallet`
 
-Say hello
+Create a new BIP39 wallet
 
 ```
 USAGE
-  $ bitcoinWallet hello PERSON -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
+  $ bitcoinWallet createWallet [-n <value>]
 
 FLAGS
-  -f, --from=<value>  (required) Who is saying hello
+  -n, --name=<value>  Wallet name
 
 DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
+  Create a new BIP39 wallet
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/hello/index.ts)_
+_See code: [dist/commands/createWallet/index.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/createWallet/index.ts)_
 
-## `bitcoinWallet hello world`
+## `bitcoinWallet generateAddress`
 
-Say hello world
+Generate an unused address for a wallet
 
 ```
 USAGE
-  $ bitcoinWallet hello world
+  $ bitcoinWallet generateAddress -n <value>
+
+FLAGS
+  -n, --name=<value>  (required) Wallet name
 
 DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ bitcoinWallet hello world
-  hello world! (./src/commands/hello/world.ts)
+  Generate an unused address for a wallet
 ```
 
-_See code: [dist/commands/hello/world.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/hello/world.ts)_
+_See code: [dist/commands/generateAddress/index.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/generateAddress/index.ts)_
+
+## `bitcoinWallet getBalance`
+
+Get the balance of a wallet
+
+```
+USAGE
+  $ bitcoinWallet getBalance -n <value>
+
+FLAGS
+  -n, --name=<value>  (required) Wallet name
+
+DESCRIPTION
+  Get the balance of a wallet
+```
+
+_See code: [dist/commands/getBalance/index.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/getBalance/index.ts)_
 
 ## `bitcoinWallet help [COMMANDS]`
 
@@ -116,6 +129,38 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.20/lib/commands/help.ts)_
+
+## `bitcoinWallet importWallet`
+
+Import a wallet from a mnemonic
+
+```
+USAGE
+  $ bitcoinWallet importWallet -m <value> -n <value>
+
+FLAGS
+  -m, --mnemonic=<value>  (required) Mnemonic
+  -n, --name=<value>      (required) Wallet name
+
+DESCRIPTION
+  Import a wallet from a mnemonic
+```
+
+_See code: [dist/commands/importWallet/index.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/importWallet/index.ts)_
+
+## `bitcoinWallet listWallets`
+
+List all wallets
+
+```
+USAGE
+  $ bitcoinWallet listWallets
+
+DESCRIPTION
+  List all wallets
+```
+
+_See code: [dist/commands/listWallets/index.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/listWallets/index.ts)_
 
 ## `bitcoinWallet plugins`
 
@@ -365,6 +410,23 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.0.2/lib/commands/plugins/update.ts)_
+
+## `bitcoinWallet transactions`
+
+Get the transactions of a wallet
+
+```
+USAGE
+  $ bitcoinWallet transactions -n <value>
+
+FLAGS
+  -n, --name=<value>  (required) Wallet name
+
+DESCRIPTION
+  Get the transactions of a wallet
+```
+
+_See code: [dist/commands/transactions/index.ts](https://github.com/R-ohit-B-isht/bitcoinWallet/blob/v0.0.0/dist/commands/transactions/index.ts)_
 <!-- commandsstop -->
 * [`oex hello PERSON`](#oex-hello-person)
 * [`oex hello world`](#oex-hello-world)
