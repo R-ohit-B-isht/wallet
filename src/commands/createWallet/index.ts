@@ -5,6 +5,7 @@ import * as bitcoin from 'bitcoinjs-lib';
 import * as dotenv from 'dotenv';
 import * as ecc from 'tiny-secp256k1';
 
+import { generateAddress } from '../../api/generate-address-api';
 import { createWallet } from '../../api/generate-wallet-api';
 import { readWalletsFromFile, writeWalletsToFile } from '../../utils/file-utils';
 
@@ -34,22 +35,17 @@ export default class CreateWalletCommand extends Command {
         }
 
         const mnemonic = bip39.generateMnemonic();
-        const seed = bip39.mnemonicToSeedSync(mnemonic);
-        const root = bip32.fromSeed(seed, bitcoin.networks.testnet);
-        const account = root.derivePath("m/44'/1'/0'/0/0");
 
-        const { address } = bitcoin.payments.p2pkh({ network: bitcoin.networks.testnet, pubkey: account.publicKey});
- 
-        const response = await createWallet(flags.name,address)
+        const response = await createWallet(flags.name,[])
 
         const wallet = {
-            addresses: [address],
+            addresses: [],
             mnemonic,
             name: flags.name,
         };
 
-        if (response.status !== 200) {
-            this.error(`Failed to create wallet: ${response.statusText}`);
+        if (response.status !== 201) {
+            this.error(` ${response.status} Failed to create wallet: ${response.statusText}`);
             return;
         }
 

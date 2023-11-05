@@ -25,7 +25,9 @@ export default class GetBalanceCommand extends Command {
         wallet.addresses.map((address) =>
         getBalance(address).then((response) => {
           const balanceInBTC = response.balance / 100_000_000;
+          this.log(`\n-------------------------`);
           this.log(`Address: ${address}`);
+          this.log(`-------------------------`);
           this.log(`Balance: ${balanceInBTC} BTC`);
           this.log(`Total Received: ${response.total_received / 100_000_000} BTC`);
           this.log(`Total Sent: ${response.total_sent / 100_000_000} BTC`);
@@ -34,7 +36,8 @@ export default class GetBalanceCommand extends Command {
           this.log(`Number of Transactions: ${response.n_tx}`);
           this.log(`Unconfirmed Number of Transactions: ${response.unconfirmed_n_tx}`);
           this.log(`Final Number of Transactions: ${response.final_n_tx}`);
-        })
+          this.log(`-------------------------`);
+      })
       )
     );
 

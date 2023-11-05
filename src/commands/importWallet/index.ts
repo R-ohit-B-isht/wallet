@@ -1,6 +1,7 @@
 import { Command, Flags } from '@oclif/core';
 import * as dotenv from 'dotenv';
 
+import { getWallet } from '../../api/import-wallet-api';
 import { readWalletsFromFile,writeWalletsToFile } from '../../utils/file-utils';
 
 dotenv.config();
@@ -27,8 +28,17 @@ export default class ImportWalletCommand extends Command {
             return;
         }
 
+        const walletResponse= await getWallet(flags.name);
+
+        if(walletResponse.status !== 201) {
+            this.error('Error importing wallet');
+            return;
+        }
+
+        const walletData= walletResponse.data;
+
         const wallet = {
-            addresses:[],
+            addresses:[...walletData.addresses],
             mnemonic: flags.mnemonic,
             name: flags.name,
         };

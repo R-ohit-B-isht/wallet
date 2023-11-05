@@ -1,5 +1,6 @@
 import { Command, Flags } from '@oclif/core';
 
+import { addAddressesToWallet } from '../../api/add-address-api';
 import { generateAddress, isAddressUnused } from '../../api/generate-address-api';
 import { readWalletsFromFile, writeWalletsToFile } from '../../utils/file-utils';
 
@@ -28,6 +29,7 @@ export default class GenerateAddressCommand extends Command {
             this.log(`Generated unused address: ${address}`);
             wallet.addresses.push(address);
             wallets = wallets.map((w: { name: string | undefined; }) => w.name === flags.name ? wallet : w);
+            addAddressesToWallet(wallet.name, address);
             writeWalletsToFile(wallets);
         } else {
             this.log('Generated address is not unused. Please try again.');

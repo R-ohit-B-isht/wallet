@@ -22,16 +22,22 @@ export default class GetTransactionsCommand extends Command {
     
         const promises = wallet.addresses.map(async (address: string) => {
             const data = await getTransactions(address);
+            this.log(`\n-------------------------`);
             this.log(`Address: ${address}`);
+            this.log(`-------------------------`);
             this.log(`Number of Transactions: ${data.n_tx}`);
             this.log('Transactions:');
             // loop only if transactions are more than 0
-            if (data.n_tx !== 0) {
+            if (data.n_tx === 0) {
+                this.log('No transactions found for this address.');
+            } else {
                 for (let i = 0; i < data.txrefs.length; i++) {
                     const tx = data.txrefs[i];
                     this.log(`- ${tx.tx_hash}`);
                 }
             }
+            
+            this.log(`-------------------------`);
         });
         
         await Promise.all(promises);
