@@ -7,6 +7,6 @@
 /lib
 /package-lock.json
 /tmp
-/yarn.lock
+# /yarn.lock
 node_modules
 oclif.manifest.json
