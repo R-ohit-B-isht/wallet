@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-const walletPath = path.join(process.cwd(), 'data', 'wallet.json');
+const walletPath = path.join(__dirname, '../..', 'data', 'wallet.json');
 
 export function readWalletsFromFile(): any[] {
   if (fs.existsSync(walletPath)) {
