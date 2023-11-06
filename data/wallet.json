@@ -1,1 +1,8 @@
-[{"addresses":["mymYv3aZQGALDqGfUPWodiVKhnXepu9ZUH","mukoLLziwbbNjeBiVcU7zHK26eLwKRUQcS"],"mnemonic":"inflict wonder issue hope pledge know farm suspect survey shrug rain priority","name":"Rohit"}]
+[
+    {"addresses":["mymYv3aZQGALDqGfUPWodiVKhnXepu9ZUH","mukoLLziwbbNjeBiVcU7zHK26eLwKRUQcS"],
+    "mnemonic":"inflict wonder issue hope pledge know farm suspect survey shrug rain priority",
+    "name":"Rohit"},
+    {"addresses":["mt76wroa9hwVFQ16qdZ8RcU3exUdUPtCLS"],
+    "mnemonic":"beach deny capable dinner armor ecology collect rapid comfort mean panel trick",
+    "name":"Rohan"}
+]

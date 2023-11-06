@@ -29,9 +29,9 @@ export default class ImportWalletCommand extends Command {
         }
 
         const walletResponse= await getWallet(flags.name);
-
-        if(walletResponse.status !== 201) {
-            this.error('Error importing wallet');
+        
+        if(walletResponse.status !== 200) {
+            this.error(`${walletResponse.status} Error importing wallet ${walletResponse.statusText}`);
             return;
         }
 
