@@ -23,9 +23,9 @@ export default class GenerateAddressCommand extends Command {
             return;
         }
 
-        const address = await generateAddress();
-
-        if (await isAddressUnused(address)) {
+        const address = await generateAddress(wallet.mnemonic, wallet.addresses.length);
+        console.log(address)
+        if (address && await isAddressUnused(address)) {
             this.log(`Generated unused address: ${address}`);
             wallet.addresses.push(address);
             wallets = wallets.map((w: { name: string | undefined; }) => w.name === flags.name ? wallet : w);
